@@ -33,6 +33,10 @@ const SignUp = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (!form.email.trim() || !form.password.trim()) {
+      return;
+    }
+
     if (isSignup) {
       dispatch(signup(form, navigate));
     } else {
@@ -96,13 +100,13 @@ const SignUp = () => {
           <Grid container spacing={2}>
             { isSignup && (
               <>
-              <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-              <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+              <Input name="firstName" value={form.firstName} label="First Name" handleChange={handleChange} autoFocus half />
+              <Input name="lastName" value={form.lastName} label="Last Name" handleChange={handleChange} half />
             </>
             )}
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
-            { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
+            <Input name="email" value={form.email} label="Email Address" handleChange={handleChange} type="email" />
+            <Input name="password" value={form.password} label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+            { isSignup && <Input name="confirmPassword" value={form.confirmPassword} label="Repeat Password" handleChange={handleChange} type="password" /> }
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             { isSignup ? 'Sign Up' : 'Sign In' }
