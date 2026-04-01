@@ -2,13 +2,13 @@ import * as api from "../api"
 import { ACTION_TYPES } from "../constants/actionType";
 
 export const getPost = (id) => async (dispatch) =>{
-    try {
+    try{
         dispatch({ type: ACTION_TYPES.START_LOADING });
         const { data } = await api.fetchPost(id);
         // console.log(data);
         dispatch({ type: ACTION_TYPES.FETCH_POST, payload: { post : data } });
         dispatch({ type: ACTION_TYPES.END_LOADING });
-    } catch (error) {
+    }catch (error) {
         console.log(error);
     }
 }
@@ -35,13 +35,13 @@ export const getPostsBySearch = (searchQuery) => async (dispatch) =>{
             payload: {data}
         });
         dispatch({ type: ACTION_TYPES.END_LOADING });
-    } catch (error) {
+    }catch (error) {
         console.log(error);
     }
 }
 
 export const createPost = (post,navigate) => async (dispatch) =>{
-    try {
+    try{
         dispatch({ type: ACTION_TYPES.START_LOADING });
         const {data} = await api.createPost(post);
         // console.log(data.creator);
@@ -51,7 +51,7 @@ export const createPost = (post,navigate) => async (dispatch) =>{
         })
         navigate(`posts/${data._id}`)
         dispatch({ type: ACTION_TYPES.END_LOADING });
-    } catch (error) {
+    }catch(error){
         console.log(error);
     }
 }
