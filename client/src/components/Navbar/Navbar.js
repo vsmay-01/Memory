@@ -1,4 +1,4 @@
-import React,{useEffect,useState} from "react"
+import React,{useEffect,useState, useCallback} from "react"
 import {AppBar, Avatar, Toolbar, Typography, Button} from "@mui/material"
 import {Link, useLocation} from "react-router-dom"
 import { useDispatch } from 'react-redux';
@@ -14,12 +14,12 @@ const Navbar = () =>{
     const location = useLocation();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
-    const logout = () => {
+    const logout = useCallback(() => {
         dispatch({ type: ACTION_TYPES.LOGOUT });
         setUser(null);
         window.location.reload()
         // navigate("/");
-      }
+      }, [dispatch]);
 
       useEffect(() => {
         const token = user?.token;
