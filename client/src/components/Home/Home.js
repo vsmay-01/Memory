@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, Grow, Grid, Paper, TextField, AppBar, Button } from "@mui/material"
@@ -6,7 +6,7 @@ import { MuiChipsInput } from 'mui-chips-input'
 import Posts from "../Posts/Posts"
 import Form from "../Form/Form"
 import Paginate from "../Pagination/Pagination";
-import { getPosts, getPostsBySearch } from "../../actions/posts"
+import { getPostsBySearch } from "../../actions/posts"
 import useStyles from "./styles"
 
 function useQuery(){

@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from "react"
 import {AppBar, Avatar, Toolbar, Typography, Button} from "@mui/material"
-import {Link, useNavigate, useLocation} from "react-router-dom"
+import {Link, useLocation} from "react-router-dom"
 import { useDispatch } from 'react-redux';
 
 import memoriesLogo from '../../images/memories-Logo.png';
@@ -12,7 +12,6 @@ const Navbar = () =>{
     const {classes} = useStyles();
     const dispatch = useDispatch();
     const location = useLocation();
-    const navigate = useNavigate();
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     const logout = () => {
@@ -37,7 +36,7 @@ const Navbar = () =>{
         }
     
         setUser(JSON.parse(localStorage.getItem('profile')));
-      }, [location]);
+      }, [location, logout, user?.token]);
 
     return (
         <AppBar className={classes.appBar} position="static" color="inherit">

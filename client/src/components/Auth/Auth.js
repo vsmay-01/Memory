@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { GoogleLogin, useGoogleLogin } from '@react-oauth/google';
+import { useGoogleLogin } from '@react-oauth/google';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import axios from 'axios';
 
