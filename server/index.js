@@ -15,6 +15,14 @@ app.use(bodyParser.json({limit: "30mb", extended: true}));
 app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
 app.use(cors());
 
+// Health check endpoint
+app.get("/", (req, res) => {
+    res.status(200).json({ 
+        message: "Server is running successfully!",
+        status: "OK",
+    });
+});
+
 app.use("/posts",postRoutes);
 app.use("/user",userRoutes);
 const PORT = process.env.PORT;
