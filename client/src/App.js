@@ -9,9 +9,10 @@ import Home from "./components/Home/Home"
 import Auth from "./components/Auth/Auth"
 
 const App = ()=>{
+    //
     const user = JSON.parse(localStorage.getItem('profile'));
     return (
-        <GoogleOAuthProvider clientId="451085950606-baqih1mllj0bmf0qcp7kbmmsu4admcd2.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="128693979404-sonn1g69ncflqkubsk2fo9tcva3n36vb.apps.googleusercontent.com">
             <Container maxWidth="xl">
                 <Navbar />
                 <Routes>
