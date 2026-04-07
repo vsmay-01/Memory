@@ -17,7 +17,6 @@ const Home = () => {
     const { classes } = useStyles();
     const query = useQuery();
     const page = query.get('page') || 1;
-    const searchQuery = query.get('searchQuery');
     const [search, setSearch] = useState("");
     const [tags, setTags] = useState([]);
     const dispatch = useDispatch();
