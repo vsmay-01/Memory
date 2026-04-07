@@ -24,10 +24,10 @@ const Home = () => {
     const navigate = useNavigate();
 
     const searchPost = () => {
-        if (search.trim() || tags) {
+        if (search.trim() || tags.length) {
             dispatch(getPostsBySearch({ search, tags: tags.join(',') }));
 
-            navigate(`/posts/search?searchQuery=${search || 'none'}&tags=${tags.join(',')}`);
+            navigate(`/posts/search?searchQuery=${search}&tags=${tags.join(',')}`);
         } else {
             navigate("/");
         }
@@ -60,7 +60,7 @@ const Home = () => {
                             <Button onClick={searchPost} className={classes.searchButton} variant="contained" color="primary">Search</Button>
                         </AppBar>
                         <Form currentId={currentId} setCurrentId={setCurrentId} />
-                        {(!searchQuery && !tags.length) && (
+                        {useLocation().pathname !== '/posts/search' && (
                             <Paper className={classes.pagination} elevation={6}>
                                 <Paginate page={page} />
                             </Paper>
