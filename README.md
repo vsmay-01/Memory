@@ -155,4 +155,4 @@ npm run build # Build for production
 npm test      # Run tests
 ```
 
-Made by the Mayank Verma
+Made by Mayank Verma
