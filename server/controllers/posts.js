@@ -21,11 +21,22 @@ export const getPostsBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query;
 
     try {
-        const query = {};
-        if (searchQuery) query.title = new RegExp(searchQuery, "i"); 
+        const conditions = [];
+        
+        if (searchQuery && searchQuery.trim()) {
+            conditions.push({ title: new RegExp(searchQuery, "i") });
+        }
+        
         if (tags) {
             const tagsArray = tags.split(',').filter(tag => tag.trim() !== '');
-            if (tagsArray.length > 0)  query.tags = { $in: tagsArray }; 
+            if (tagsArray.length > 0) {
+                conditions.push({ tags: { $in: tagsArray } });
+            }
+        }
+
+        let query = {};
+        if (conditions.length > 0) {
+            query = conditions.length > 1 ? { $or: conditions } : conditions[0];
         }
 
         const posts = await PostMessage.find(query);
