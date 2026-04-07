@@ -21,9 +21,20 @@ export const getPostsBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query;
 
     try {
-        const title = new RegExp(searchQuery, "i"); //ignore text,Text,TEXT ->all are same
+        const query = {};
 
-        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
+        if (searchQuery) {
+            query.title = new RegExp(searchQuery, "i");
+        }
+
+        if (tags) {
+            const tagsArray = tags.split(',').filter(tag => tag.trim() !== '');
+            if (tagsArray.length > 0) {
+                query.tags = { $in: tagsArray };
+            }
+        }
+
+        const posts = await PostMessage.find(query);
 
         res.json({ data: posts });
     } catch (error) {    
